@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import Product from "./components/productcomponent/product";
-import Product from "./components/functional/product";
-// import ClassComponent from "../src/components/basic1/classCamponent";
-// import FunctionComponent from "../src/components/basic1/functionalComponent";
+
+//کلاس کامپوننت
+// import Products from "./components/classComp/products";
+
+//فانکشن کامپوننت
+import Products from "./components/functionalComp/products";
+
 // import {walk} from "./importexport";
 
 // walk();
@@ -13,7 +16,7 @@ import Product from "./components/functional/product";
 
 // ReactDOM.render(<ClassComponent/>,document.getElementById('root'));
 // ReactDOM.render(<FunctionComponent/>,document.getElementById('root'));
-ReactDOM.render(<Product/>,document.getElementById('root'));
+ReactDOM.render(<Products/>,document.getElementById('root'));
 
 
 
