@@ -1,9 +1,18 @@
-import { useState } from "react";
+// import { useState } from "react";
 
 // const Product = (props) => {
-  //چون چیزی که به اینجا پراپ شده نام کانت با نام یک متغیر در اینجا ییکی است جلوی آن دو نقطه میگذاریم و یک نام دیگر به آن نسبت میدهیم که نامها تکراری نشوند
-  const Product = ({productName,count:propCount,onDelete,id,imgUrl,children}) => {
-  const [count, setCount] = useState(propCount);
+//چون چیزی که به اینجا پراپ شده نام کانت با نام یک متغیر در اینجا ییکی است جلوی آن دو نقطه میگذاریم و یک نام دیگر به آن نسبت میدهیم که نامها تکراری نشوند
+const Product = ({
+  productName,
+  count: propCount,
+  onDelete,
+  id,
+  imgUrl,
+  children,
+  onIncrement,
+  onDecrement,
+}) => {
+  // const [count, setCount] = useState(propCount);
   //   const [existance, setExistance] = useState(1);
   const existance = 1;
 
@@ -16,7 +25,8 @@ import { useState } from "react";
           <span className="m-2 text-info">{productName}</span>
           {/* <span className="m-2 text-info">{props.productName}</span> */}
           <span className="m-2 badge bg-primary">
-            {count === 0 ? "zero" : count}
+            {format()}
+            {/* {count === 0 ? "zero" : count} */}
             {/* {this.count !== 0 && this.count} */}
           </span>
           {/* نکته مهم : در رویداد ها مثلآن کلیک فراخوانی توابع به پرانتز نیازی نیست   */}
@@ -43,7 +53,7 @@ import { useState } from "react";
           {/* <ul>
               {List.map((item,index)=><li key={index}>{item}</li>)}
           </ul> */}
-          <img src={imgUrl} style={{ borderRadius: "80%",width:"10%" }} />
+          <img src={imgUrl} style={{ borderRadius: "80%", width: "10%" }} />
           {children}
         </>
       ) : (
@@ -59,11 +69,13 @@ import { useState } from "react";
   //در کلاس کامپوننت فقط میشود یک استیت داشت اما در فانکشنال کامپوننت می توان چندین استیت تعیین کرد
 
   function handleIncrement() {
-    setCount(count + 1);
+    // setCount(count + 1);
+    onIncrement(id);
   }
 
   function handleDecrement() {
-    setCount(count - 1);
+    // setCount(count - 1);
+    onDecrement(id);
   }
 
   function handleDelete() {
@@ -72,10 +84,10 @@ import { useState } from "react";
   }
 
   function format() {
-    if (count == 0) {
+    if (propCount == 0) {
       return "zero";
     } else {
-      return count;
+      return propCount;
     }
   }
 };
