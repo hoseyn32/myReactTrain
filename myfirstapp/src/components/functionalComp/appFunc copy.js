@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import Products from "./products";
-import { useState } from "react";
+import { useState , useEffect} from "react";
+import ProductsContext from "../../context/products";
 
 const App = () => {
   const [products, setProducts] = useState([
@@ -23,16 +24,42 @@ const App = () => {
       imgUrl: "https:/picsum.photos/400",
     },
   ]);
+
+  //mount - update
+  useEffect(()=>{
+    console.log('mount and update')
+  });
+
+   //mount
+   useEffect(()=>{
+    console.log('mount')
+  },[]);
+
+  //unmount
+  //باید در کامپوننتی که از بین میرود نوشته شود تا کار کند
+  useEffect(()=>{
+    return ()=>{
+      console.log('unmount')
+    }
+  })
+
+
   return (
     <>
-      <Navbar products={products} />
-      <Products
-        products={products}
-        onDelete={handleDelete}
-        onIncrement={handleIncrement}
-        onDecrement={handleDecrement}
-        onReset={handleReset}
-      />
+      <ProductsContext.Provider
+      value={{
+      products:products,
+      onDelete:handleDelete,
+      onIncrement:handleIncrement,
+      onDecrement:handleDecrement,
+      onReset:handleReset
+      }}
+      >
+      
+      <Navbar/>
+      <Products/>
+
+      </ProductsContext.Provider>
     </>
   );
 

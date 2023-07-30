@@ -1,22 +1,23 @@
-// import { useState } from "react";
+ // import { useState } from "react";
+import { useContext } from "react";
+import ProductsContext from "../../context/products";
 
 // const Product = (props) => {
 //چون چیزی که به اینجا پراپ شده نام کانت با نام یک متغیر در اینجا ییکی است جلوی آن دو نقطه میگذاریم و یک نام دیگر به آن نسبت میدهیم که نامها تکراری نشوند
 const Product = ({
   productName,
   count: propCount,
-  onDelete,
   id,
   imgUrl,
   children,
-  onIncrement,
-  onDecrement,
+
 }) => {
   // const [count, setCount] = useState(propCount);
   //   const [existance, setExistance] = useState(1);
   const existance = 1;
 
   // const imgUrl = "https:/picsum.photos/200";
+  const productsContext = useContext(ProductsContext);
 
   return (
     <div>
@@ -70,17 +71,17 @@ const Product = ({
 
   function handleIncrement() {
     // setCount(count + 1);
-    onIncrement(id);
+    productsContext.onIncrement(id);
   }
 
   function handleDecrement() {
     // setCount(count - 1);
-    onDecrement(id);
+    productsContext.onDecrement(id);
   }
 
   function handleDelete() {
     console.log("delete");
-    onDelete(id);
+    productsContext.onDelete(id);
   }
 
   function format() {

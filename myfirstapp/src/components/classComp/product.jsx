@@ -1,9 +1,12 @@
 import { Component } from "react";
+import ProductContext from "../../context/products";
 //نکته مهم :استیت در لحظه آپدیت نمیشود اما پرتپ ها اپدیت میشوند
 //کامپوننتی که استیت نداشته باشد به آن کامپوننت تحت کنترل گفته میشود ینی تمام اطلاعات آن از کامپوننت دیگر می آید
 
 class Product extends Component {
   // count1 = 1;
+  static contextType = ProductContext;
+
   existance = 1;
   imgUrl = "https:/picsum.photos/200";
   //اگر تابع اینجا تعریف شود دیگر لازم نیست به ورودی توابع آن را بدهیم و باید برای دسترسی به آن ریترین گذاشت
@@ -73,19 +76,19 @@ class Product extends Component {
     // const { count: counted } = this.props;
     // this.setState({ count: counted + 1 });
     // console.log(this.state);
-    this.props.onIncrement(this.props.id);
+    this.context.onIncrement(this.props.id);
   };
 
   handleDecrement = () => {
     // console.log("decrement", itemNumber);
     // const { count: counted } = this.props;
     // this.setState({ count: counted - 1 });
-    this.props.onDecrement(this.props.id);
+    this.context.onDecrement(this.props.id);
   };
 
   //در اینجا اگر تابع بصورت ارو فانکشن نباشد مقدار دیس آندیفایند میشود چون آن کلیک آن بصورت ارو فانکشن نوشته نشده است
   handleDelete = () => {
-    this.props.onDelete(this.props.id);
+    this.context.onDelete(this.props.id);
   };
 
   format() {

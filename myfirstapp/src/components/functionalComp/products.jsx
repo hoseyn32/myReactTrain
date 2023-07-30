@@ -1,41 +1,24 @@
 import Product from "./product";
+import { useContext } from "react";
+import ProductsContext from "../../context/products";
 
 const Products = (props) => {
-  // const [products, setProducts] = useState([
-  //   {
-  //     id: 1,
-  //     count: 2,
-  //     productName: "laptop",
-  //     imgUrl: "https:/picsum.photos/200",
-  //   },
-  //   {
-  //     id: 2,
-  //     count: 1,
-  //     productName: "phone",
-  //     imgUrl: "https:/picsum.photos/300",
-  //   },
-  //   {
-  //     id: 3,
-  //     count: 4,
-  //     productName: "airpods",
-  //     imgUrl: "https:/picsum.photos/400",
-  //   },
-  // ]);
+
+  const productsContext = useContext(ProductsContext);
+
+  console.log("aaaaaaaaa",productsContext);
 
   return (
     <>
       <button
-        onClick={props.onReset}
+        onClick={productsContext.onReset}
         style={{ margin: "20px" }}
         className="btn btn-danger"
       >
         Reset Delete
       </button>
-      {props.products.map((p, index) => (
+      {productsContext.products.map((p, index) => (
         <Product
-          onIncrement={props.onIncrement}
-          onDecrement={props.onDecrement}
-          onDelete={props.onDelete}
           id={p.id}
           key={index}
           productName={p.productName}

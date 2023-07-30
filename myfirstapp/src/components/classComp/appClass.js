@@ -1,10 +1,25 @@
 import { Component } from "react";
 import Products from "./products";
 import Navbar from "./Navbar";
+import ProductContext from "../../context/products";
 // import Products from "./components/functionalComp/products";
 // import Navbar from "./components/functionalComp/Navbar";
 
 class App extends Component {
+
+  constructor(props){
+    //خط زیر الزامی است
+    //ست استیت را نمی توان در اینجا صدا زد چون در زمانی میتوان از آن استفاده کرد که کامپوننت رندر شده باشد
+    super(props);
+    console.log('App - constructor');
+  }
+
+  componentDidMount(){
+    console.log('App - didMount');
+  }
+
+
+
   state = {
     products: [
       {
@@ -29,16 +44,21 @@ class App extends Component {
   };
 
   render() {
+    //اگر این کامپوننت رندر شود تمام کامپوننتهای زیر مجموعه آن هم رندر میشوند
     return (
       <>
-        <Navbar products={this.state.products} />
-        <Products
-          products={this.state.products}
-          onDelete={this.handleDelete}
-          onIncrement={this.handleIncrement}
-          onDecrement={this.handleDecrement}
-          onReset={this.handleReset}
-        />
+        <ProductContext.Provider
+         value={{
+          products:this.state.products,
+          onDelete:this.handleDelete,
+          onIncrement:this.handleIncrement,
+          onDecrement:this.handleDecrement,
+          onReset:this.handleReset
+         }}
+        >
+          <Navbar />
+          <Products />
+        </ProductContext.Provider>
       </>
     );
   }

@@ -1,7 +1,9 @@
 import React from "react";
 import Product from "./product";
+import ProductContext from "../../context/products";
 
 class Products extends React.Component {
+  static contextType = ProductContext;
   // state = {
   //   products: [
   //     {
@@ -28,7 +30,7 @@ class Products extends React.Component {
     return (
       <>
         <button
-          onClick={this.props.onReset}
+          onClick={this.context.onReset}
           style={{ margin: "20px" }}
           className="btn btn-danger"
         >
@@ -37,11 +39,8 @@ class Products extends React.Component {
         {/* <Product productName="laptop"/>
             <Product productName="tablet"/>
             <Product productName="mobile "/> */}
-        {this.props.products.map((p, index) => (
+        {this.context.products.map((p, index) => (
           <Product
-            onIncrement={this.props.onIncrement}
-            onDecrement={this.props.onDecrement}
-            onDelete={this.props.onDelete}
             id={p.id}
             key={index}
             productName={p.productName}
